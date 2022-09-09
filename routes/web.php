@@ -28,5 +28,5 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     Route::get('student', 'StudentController@list');
-
+    Route::get('student/getdata', 'StudentController@getdata');
 });
