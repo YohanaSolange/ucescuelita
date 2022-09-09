@@ -220,6 +220,9 @@
                         <a class="menu-link {{(request()->is('/')) ? 'active' : '' }}" href="{{ url('/') }}">
                             <i class="material-icons">home</i> Inicio
                         </a>
+                        <a class="menu-link {{(request()->is('/student')) ? 'active' : '' }}" href="{{ url('/student') }}">
+                            <i class="material-icons">people</i> Estudiantes
+                        </a>
                         <li class="nav-item">
                             <a class="menu-collapse {{(request()->is('config/*')) ? 'active' : '' }}">
                                 <i class="material-icons">settings</i> Configurar
