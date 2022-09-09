@@ -82,4 +82,8 @@ class StudentController extends Controller
     {
         //
     }
+    public function list ()
+    {
+        return view ('student.list');
+    }
 }
