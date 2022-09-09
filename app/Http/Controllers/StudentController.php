@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class StudentController extends Controller
 {
@@ -85,5 +86,10 @@ class StudentController extends Controller
     public function list ()
     {
         return view ('student.list');
+    }
+//crea metodo ajax que retorna los datos a un datatable
+    public function getdata(){
+        $students = Student::all();
+        return DataTables::of($students)->make(true);
     }
 }
