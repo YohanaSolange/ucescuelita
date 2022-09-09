@@ -26,4 +26,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('config/users/{user_id}'                 , 'UserController@edit');
     Route::post('config/users/store'                    , 'UserController@store');
 
+
+    Route::get('student', 'StudentController@list');
+
 });
