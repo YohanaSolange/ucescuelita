@@ -6,6 +6,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
+
 class StudentController extends Controller
 {
     /**
@@ -83,6 +84,7 @@ class StudentController extends Controller
     {
         //
     }
+    // llama vista list
     public function list ()
     {
         return view ('student.list');
@@ -92,4 +94,32 @@ class StudentController extends Controller
         $students = Student::all();
         return DataTables::of($students)->make(true);
     }
+//agregar estudiante
+    public function add(){
+        $students = new Student;
+        return view('Student.form',compact('students'));
+    }
+
+    public function addStorage(Request $request){
+           
+        
+        
+        $input= $request->all();
+        
+        Student::create($input);
+            
+            /**$students = new Student($id);
+            $students->name;
+            $students->rut;
+            $students->phone;
+            $students->birthday;
+            $students->email;
+            $students->save();
+            activitypush('AGREGA', 'ESTUDIANTE AGREGADO');
+            return redirect()->route('student.list')->with('success', 'Alumno agregado correctamente');
+            
+      */
+    }
+
+
 }
