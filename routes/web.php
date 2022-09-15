@@ -23,10 +23,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('config/users'                           , 'UserController@list')->name('users.list');
     Route::get('config/users/getdata'                   , 'UserController@getdata');
     Route::get('config/users/add'                       , 'UserController@add');
-    Route::get('config/users/{user_id}'                 , 'UserController@edit');
-    Route::post('config/users/store'                    , 'UserController@store');
+    //Route::get('config/users/{user_id}'                 , 'UserController@edit');
+    //Route::post('config/users/store'                    , 'UserController@store');
 
-
+    //Ruta Estudiantes
     Route::get('student', 'StudentController@list');
     Route::get('student/getdata', 'StudentController@getdata');
+    Route::get('student/add', 'StudentController@add');
+    Route::get('student', 'StudentController@list')->name('student.list');
+    Route::post('student/add/storage', 'StudentController@addStorage');
 });
