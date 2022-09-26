@@ -31,5 +31,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('student/getdata', 'StudentController@getdata');
     Route::get('student/add', 'StudentController@add');
     Route::get('student', 'StudentController@list')->name('student.list');
-    Route::post('student/add/storage', 'StudentController@addStorage');
+    Route::post('student/add/storage', 'StudentController@addStorage')->name('student.msjstorage');
 });
