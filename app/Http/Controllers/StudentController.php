@@ -99,16 +99,17 @@ class StudentController extends Controller
         $students = new Student;
         return view('Student.form',compact('students'));
     }
-
+//extraer los datos del registro del estudiante 
     public function addStorage(Request $request){
            
-        
-        
         $input= $request->all();
         
-        Student::create($input);
-            
-            /**$students = new Student($id);
+    
+        $student = Student::create($input);
+
+        return view ('student.msjstorage');
+        
+        /**$students = new Student($id);
             $students->name;
             $students->rut;
             $students->phone;
@@ -117,8 +118,7 @@ class StudentController extends Controller
             $students->save();
             activitypush('AGREGA', 'ESTUDIANTE AGREGADO');
             return redirect()->route('student.list')->with('success', 'Alumno agregado correctamente');
-            
-      */
+            */
     }
 
 
