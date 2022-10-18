@@ -14,11 +14,11 @@
         
         <div class="w3-red">
             <div class="success">
-                <h2><i class="material-icons fs-1" >done_all</i> Estudiante agregado correctamente</h2>  
+                <h2><i class="material-icons fs-1" >done_all</i> {{$msj}}</h2>  
             </div>
 
             <br> </br>
-                <a  href="{{ url('student/')}}" class="btn btn-primary ">
+                <a  href="{{ url($redict)}}" class="btn btn-primary ">
                     <i class="material-icons ">reply_all</i>
                     Volver 
                 </a>
