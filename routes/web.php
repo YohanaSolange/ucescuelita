@@ -29,7 +29,14 @@ Route::group(['middleware' => ['auth']], function() {
     //Ruta Estudiantes
     Route::get('student', 'StudentController@list');
     Route::get('student/getdata', 'StudentController@getdata');
-    Route::get('student/add', 'StudentController@add');
     Route::get('student', 'StudentController@list')->name('student.list');
-    Route::post('student/add/storage', 'StudentController@addStorage')->name('student.msjstorage');
+
+    //muestra pantalla para AGREGAR estudiante y la otra procesa (post)
+    Route::get('student/add', 'StudentController@add');
+    Route::post('student/add/storage', 'StudentController@addStorage');
+
+    //mostrar pantalla para editar estudiante
+    Route::get('student/{student_id}/edit', 'StudentController@showEdit');
+    Route::post('student/{student_id}/edit/storage', 'StudentController@editStorage');
+
 });
