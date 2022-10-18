@@ -29,7 +29,9 @@
                         <th>E-mail</th>
                         <th>Telefono</th>
                         <th>Fecha Nacimiento</th>
-                        <th>Opciones</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                        <th>Detalle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,9 +77,12 @@
                     { "data": "phone"},
                     { "data": "birthday"},
                     { data: "id", render : function ( data, type, row, meta ) {
-                         var buttons = '<a class="btn btn-primary" href="{{ url("config/users")}}/'+data+'" title="Editar"><i class="material-icons">edit</i></a>';
+                         var buttons = '<a class="btn btn-primary" href="{{ url("student")}}/'+data+'/edit" title="Editar"><i class="material-icons">edit</i></a>';
                         return buttons;
-                    }}
+                    }},
+                    { "data": "birthday"},
+                    { "data": "birthday"}
+
                   
                 ],
                 language: lenguaje_es,
