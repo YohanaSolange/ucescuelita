@@ -106,8 +106,9 @@ class StudentController extends Controller
         
     
         $student = Student::create($input);
-
-        return view ('student.msjstorage');
+        $msj= 'Estudiante agregado Correctamente';
+        $redict='/student';
+        return view ('templates.msj',compact('msj','redict'));
         
         /**$students = new Student($id);
             $students->name;
@@ -121,5 +122,34 @@ class StudentController extends Controller
             */
     }
 
+    public function showEdit ($student_id){
+        //dd($student_id);
 
+        //- con el id buscar el estudiante
+        //- retornar una vista y pasarle como parametro el estudiante buscado
+        $student = Student::findOrFail($student_id);
+        return view('student.edit',compact('student'));//compact pasa $variable a la vista =echo
+    }
+
+    public function editStorage(Request $request, $student_id){
+       
+     
+        //Si encuentra el ID edita
+        $student = Student::findOrFail($student_id);
+        $student->name =  $request->name;
+        $student->rut =  $request->rut;
+        $student->phone =  $request->phone;
+        $student->birthday=  $request->birthday;
+        $student->email =  $request->email;
+        $student->save();
+
+        $msj = 'Estudiante ' . $student->name . ' Modificado';
+        $redict ='/student';
+        return view('templates.msj',compact('msj','redict'));
+       // return redirect()->to('/');
+        #activitypush('AGREGA', 'PERSONA AGREGA USUARIO');
+        #return redirect()->route('student.list')->with('success', 'Estudiante editado correctamente');
+        
+
+    }
 }
