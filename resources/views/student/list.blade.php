@@ -30,8 +30,8 @@
                         <th>Telefono</th>
                         <th>Fecha Nacimiento</th>
                         <th>Editar</th>
-                        <th>Eliminar</th>
                         <th>Detalle</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,9 +80,11 @@
                          var buttons = '<a class="btn btn-primary" href="{{ url("student")}}/'+data+'/edit" title="Editar"><i class="material-icons">edit</i></a>';
                         return buttons;
                     }},
-                    { "data": "birthday"},
+                     { data: "id", render : function ( data, type, row, meta ) {
+                         var buttons = '<a class="btn btn-info" href="{{ url("student")}}/'+data+'/detail" title="Detail"><i class="material-icons">search</i></a>';
+                        return buttons;
+                    }},
                     { "data": "birthday"}
-
                   
                 ],
                 language: lenguaje_es,
