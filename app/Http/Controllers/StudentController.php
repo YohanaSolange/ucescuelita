@@ -152,4 +152,15 @@ class StudentController extends Controller
         
 
     }
+
+
+    public function detail($student_id){
+
+        $student = Student::findOrFail($student_id);
+
+        //dd($student->rut);
+        
+        return view ('student.detail',compact('student')); 
+
+    }
 }
