@@ -39,4 +39,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('student/{student_id}/edit', 'StudentController@showEdit');
     Route::post('student/{student_id}/edit/storage', 'StudentController@editStorage');
 
+    //detalles del estudiante
+    Route::get('student/{student_id}/detail','StudentController@detail');
 });
