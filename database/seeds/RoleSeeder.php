@@ -38,6 +38,11 @@ class RoleSeeder extends Seeder
             'password' => bcrypt('password')
         ]);
 
+        $user = User::create([
+            'name' => 'Yohana Calbuyahue',
+            'email' => 'yohana.calbuyahue.a@gmail.com',
+            'password' => bcrypt('password')
+        ]);
         //$user->assignRole('root');
     }
 }
