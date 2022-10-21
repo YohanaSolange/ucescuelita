@@ -1,4 +1,4 @@
-@extends('templates.clientes.header')
+@extends('templates.clients.header')
 @section('content')
     <body class="bg-light h-100 d-flex justify-content-center align-items-center">
         <div class="card bg-dark text-white m-2">
@@ -6,7 +6,7 @@
              
                 <div class="col-12">
                     <div class="card-body">
-                        <form action="{{url('sesion/login')}}" method="POST">
+                        <form action="{{url('student/pay/consult')}}" method="POST">
                             {{ csrf_field() }}
                             <h4 class="card-title" align="center">Bienvenidos Al portal de Pagos </h4>
                             <h2 class="card-title" align="center">Escuela UC Quellón</h2>
