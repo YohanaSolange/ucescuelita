@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Membership;
 use Illuminate\Http\Request;
+use App\Student;
 
 class MembershipController extends Controller
 {
@@ -81,5 +82,15 @@ class MembershipController extends Controller
     public function destroy(Membership $membership)
     {
         //
+    }
+
+    public function pago(){
+
+     //   $student = Student::findOrFail($student_id);
+
+     //   dd($student->rut);
+        
+      //  return view ('student.pago',compact('student')); 
+      return view ('templates.clientes.pago');
     }
 }
