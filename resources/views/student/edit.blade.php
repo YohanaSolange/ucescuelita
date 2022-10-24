@@ -32,6 +32,14 @@
                       <label>Fecha de Nacimiento</label>
                       <input type="date" class="form-control" name="birthday"  value="{{$student->birthday}}" required>
                   </div>
+                  <div class="form-group">
+                      <label>Altura</label>
+                      <input type="number"  step="any" class="form-control" name="height"  value="{{$student->height}}">
+                  </div>
+                  <div class="form-group">
+                      <label>Peso</label>
+                      <input type="number" step="any" class="form-control" name="weight"  value="{{$student->weight}}">
+                  </div>
 
 
                  
