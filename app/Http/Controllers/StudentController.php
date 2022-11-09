@@ -106,6 +106,8 @@ class StudentController extends Controller
         
     
         $student = Student::create($input);
+        //TODO: Generar las membresias del estudiante recien creado
+        
         $msj= 'Estudiante agregado Correctamente';
         $redict='/student';
         return view ('templates.msj',compact('msj','redict'));
