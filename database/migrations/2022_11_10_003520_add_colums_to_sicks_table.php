@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembershiptypesTable extends Migration
+class AddColumsToSicksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMembershiptypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('membershiptypes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('sicks', function (Blueprint $table) {
             $table->string('name');
+            //
         });
     }
 
@@ -27,7 +26,9 @@ class CreateMembershiptypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membershiptypes');
-        
+        Schema::table('sicks', function (Blueprint $table) {
+            $table->dropColumns(['name']);
+            //
+        });
     }
 }
