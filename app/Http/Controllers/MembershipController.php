@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Membership;
 use Illuminate\Http\Request;
+use App\Student;
 
 class MembershipController extends Controller
 {
@@ -82,4 +83,37 @@ class MembershipController extends Controller
     {
         //
     }
+
+    public function pay(){
+
+     //   $student = Student::findOrFail($student_id);
+
+     //   dd($student->rut);
+        
+      //  return view ('student.pago',compact('student')); 
+      return view ('templates.clients.pay');
+    }
+    public function consult(Request $request){
+        //te entrega lo que se escribio de un formulario
+        $input = $request->all();
+        //select * from student where rut = input del formulario [rut] too 1
+        $student = Student::where('rut',"=",$input['rut'])->first();
+
+        //dd($student);
+        //valida si el consultante es nulo
+        if(is_null($student)){
+            //TODO: mostrar mensaje mas bonito de validacion
+            echo "Estudiante no encontrado";
+        }else{
+
+            return view ('templates.clients.consult',compact('student'));
+
+        }
+      
+
+          //($student->rut);
+           
+         //  return view ('student.pago',compact('student')); 
+        // return view ('templates.clientes.pago');
+       }
 }

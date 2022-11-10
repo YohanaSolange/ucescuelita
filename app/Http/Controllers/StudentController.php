@@ -106,6 +106,8 @@ class StudentController extends Controller
         
     
         $student = Student::create($input);
+        //TODO: Generar las membresias del estudiante recien creado
+        
         $msj= 'Estudiante agregado Correctamente';
         $redict='/student';
         return view ('templates.msj',compact('msj','redict'));
@@ -136,11 +138,12 @@ class StudentController extends Controller
      
         //Si encuentra el ID edita
         $student = Student::findOrFail($student_id);
-        $student->name =  $request->name;
+        $student->update($request->all());
+       /* $student->name =  $request->name;
         $student->rut =  $request->rut;
         $student->phone =  $request->phone;
         $student->birthday=  $request->birthday;
-        $student->email =  $request->email;
+        $student->email =  $request->email; */
         $student->save();
 
         $msj = 'Estudiante ' . $student->name . ' Modificado';
