@@ -133,7 +133,9 @@ class StudentController extends Controller
         //- con el id buscar el estudiante
         //- retornar una vista y pasarle como parametro el estudiante buscado
         $student = Student::findOrFail($student_id);
-        return view('student.edit',compact('student'));//compact pasa $variable a la vista =echo
+        //$categories = Category::findOrFail($category_id); //findOrfFails busca un elemento select top 1 * algo
+        $categories = Category::all();
+        return view('student.edit',compact('student','categories'));//compact pasa $variable a la vista =echo
     }
 
     public function editStorage(Request $request, $student_id){

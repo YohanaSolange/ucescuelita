@@ -18,6 +18,8 @@ class StudentSeeder extends Seeder
             'rut' => '17111222-k',
             'phone'=>'99009921',
             'birthday' => '2000-01-01',
+            'height'=> 160,
+            'weight'=>60,
             'category_id'=> 1,
 
         ]);
