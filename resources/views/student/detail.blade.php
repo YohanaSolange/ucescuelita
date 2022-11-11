@@ -20,6 +20,7 @@
             <b>Fecha Nacimiento:</b>{{$student->birthday}}<br>
             <b>Altura:</b>{{$student->height}}<br>
             <b>Peso:</b>{{$student->weight}}<br>
+            <b>Categoria: </b> {{$student->category->name}}
             </div>
             
             </div>
