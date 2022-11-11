@@ -13,15 +13,13 @@
               </div>
 
               <div class="card-body"> 
-            <b>Nombre: </b>{{$student->name}}
-            <br>
-            <b>Rut: </b> {{$student->rut}}
-            <br>
-            <b>Telefono:</b> {{$student->phone}}
-            <br>
-            <b>Email:</b>{{$student->email}}
-            <br>
-            <b>Fecha Nacimiento:</b>{{$student->birthday}}
+            <b>Nombre: </b>{{$student->name}}<br>
+            <b>Rut: </b> {{$student->rut}}<br>
+            <b>Telefono:</b> {{$student->phone}}<br>
+            <b>Email:</b>{{$student->email}}<br>
+            <b>Fecha Nacimiento:</b>{{$student->birthday}}<br>
+            <b>Altura:</b>{{$student->height}}<br>
+            <b>Peso:</b>{{$student->weight}}<br>
             </div>
             
             </div>

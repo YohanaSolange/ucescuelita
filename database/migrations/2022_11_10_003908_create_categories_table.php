@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->integer('start_year')->nullable();
-            $table->integer('end_year')->nullable()s;
+            $table->integer('end_year')->nullable();
         });
     }
 

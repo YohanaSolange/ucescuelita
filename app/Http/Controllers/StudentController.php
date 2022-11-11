@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Category;
 
 
 class StudentController extends Controller
@@ -96,8 +97,10 @@ class StudentController extends Controller
     }
 //agregar estudiante
     public function add(){
-        $students = new Student;
-        return view('Student.form',compact('students'));
+        $students = new Student;//TODO: hay eliminar esta linea y sacar del form los values 
+
+        $categories = Category::all();//me trae todo el registro de la tabla category 
+        return view('Student.form',compact('students','categories'));
     }
 //extraer los datos del registro del estudiante 
     public function addStorage(Request $request){
