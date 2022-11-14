@@ -89,10 +89,11 @@ class MembershipController extends Controller
      //   $student = Student::findOrFail($student_id);
 
      //   dd($student->rut);
-        
-      //  return view ('student.pago',compact('student')); 
+
+      //  return view ('student.pago',compact('student'));
       return view ('templates.clients.pay');
     }
+
     public function consult(Request $request){
         //te entrega lo que se escribio de un formulario
         $input = $request->all();
@@ -105,15 +106,24 @@ class MembershipController extends Controller
             //TODO: mostrar mensaje mas bonito de validacion
             echo "Estudiante no encontrado";
         }else{
+            //si el estudiante existe buscaremos todas sus membresias y calcularemos cuanto debe
+            $memberships = Membership::where('student_id','=',$student->id)->where('status','=',1)->get();
 
-            return view ('templates.clients.consult',compact('student'));
 
+            return view ('templates.clients.consult',compact('student','memberships'));
         }
-      
+
 
           //($student->rut);
-           
-         //  return view ('student.pago',compact('student')); 
+
+         //  return view ('student.pago',compact('student'));
         // return view ('templates.clientes.pago');
+       }
+
+       //metodo para procesar la peticion de pago
+       public function consultProcess(Request $request){
+        //TODO: se deben añadir validaciones y posible integracion con webpay?
+
+        echo "Se ha realizado el pago con exito !" .$request['rut'];
        }
 }
