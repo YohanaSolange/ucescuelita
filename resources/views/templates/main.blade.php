@@ -223,6 +223,9 @@
                         <a class="menu-link {{(request()->is('/student')) ? 'active' : '' }}" href="{{ url('/student') }}">
                             <i class="material-icons">people</i> Estudiantes
                         </a>
+                          <a class="menu-link {{(request()->is('/category')) ? 'active' : '' }}" href="{{ url('/category') }}">
+                            <i class="material-icons">people</i> Categorias
+                        </a>
                         <li class="nav-item">
                             <a class="menu-collapse {{(request()->is('config/*')) ? 'active' : '' }}">
                                 <i class="material-icons">settings</i> Configurar

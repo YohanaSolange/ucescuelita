@@ -42,6 +42,15 @@ Route::group(['middleware' => ['auth']], function() {
     //detalles del estudiante
     Route::get('student/{student_id}/detail','StudentController@detail');
 
+     //Ruta Categorias
+     Route::get('category', 'CategoryController@list');
+     Route::get('category/getdata', 'CategoryController@getdata');
+     Route::get('category', 'CategoryController@list')->name('category.list');
+     Route::get('category/add', 'CategoryController@add');
+     Route::post('category/add/storage', 'CategoryController@addStorage');
+     Route::get('category/{category_id}/edit', 'CategoryController@showEdit');
+     Route::post('category/{category_id}/edit/storage', 'CategoryController@editStorage');
+     Route::get('category/{category_id}/detail','CategoryController@detail');
 });
 
 Route::get('student/pay', 'MembershipController@pay');

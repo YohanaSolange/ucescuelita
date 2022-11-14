@@ -6,7 +6,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 align="center">
-                        <i class="material-icons fs-1">add_box</i> Estudiante {{$student->name}}
+                        <i class="material-icons fs-1"></i> Estudiante {{$student->name}}
                 </h2>
 
 
@@ -20,6 +20,7 @@
             <b>Fecha Nacimiento:</b>{{$student->birthday}}<br>
             <b>Altura:</b>{{$student->height}}<br>
             <b>Peso:</b>{{$student->weight}}<br>
+            {{--Accedo al nombre de la categoria por el metodo category creado en el modelo student--}}
             <b>Categoria: </b> {{$student->category->name}}
             </div>
             
