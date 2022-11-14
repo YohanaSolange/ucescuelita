@@ -6,7 +6,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 align="center">
-                        <i class="material-icons fs-1">add_box</i>Actualizar Estudiante
+                        <i class="material-icons fs-1">add</i>Actualizar Estudiante
                 </h2>
               </div>
               <form method="post" action="{{url('student/'.$student->id.'/edit/storage')}}">
@@ -40,7 +40,21 @@
                       <label>Peso</label>
                       <input type="number" step="any" class="form-control" name="weight"  value="{{$student->weight}}">
                   </div>
+                 <div class="form-group"> 
+                    <label>Categoria</label>
+                    <select class="form-select" aria-label="Default select example" name="category_id" required>
+                     <option value=""> Seleccione una Categoria</option> 
+                     @foreach($categories as $category) 
+                        {{--Si el category->id es igual al student->id muestra esto--}}
+                        @if($category->id==$student->category_id)
+                        <option selected value="{{$category->id}}">{{$category->name}}</option>
+                        @else
+                        <option value="{{$category->id}}">{{$category->name}}</option>
 
+                        @endif
+                     @endforeach
+                     </select>
+                     </div>
 
                  
                 </div>
