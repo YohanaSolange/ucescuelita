@@ -119,4 +119,11 @@ class MembershipController extends Controller
          //  return view ('student.pago',compact('student'));
         // return view ('templates.clientes.pago');
        }
+
+       //metodo para procesar la peticion de pago
+       public function consultProcess(Request $request){
+        //TODO: se deben añadir validaciones y posible integracion con webpay?
+
+        echo "Se ha realizado el pago con exito !" .$request['rut'];
+       }
 }

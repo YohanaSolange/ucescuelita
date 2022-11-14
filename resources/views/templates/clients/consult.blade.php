@@ -6,7 +6,7 @@
 
                 <div class="col-12">
                     <div class="card-body">
-                        <form action="#" method="POST">
+                        <form action="{{url('student/pay/consult/process')}}" method="POST">
                             {{ csrf_field() }}
 
                             <h4 class="card-title" align="center">
@@ -17,6 +17,8 @@
                             <b>El estudiante posee una deuda de: $ {{$memberships->sum('ammount')}}</b>
                             </h4>
                             <br>
+
+                            <input type="hidden" name="rut" value="{{$student->rut}}">
 
                             @foreach ($memberships as $membership)
 

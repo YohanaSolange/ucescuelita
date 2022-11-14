@@ -46,4 +46,4 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('student/pay', 'MembershipController@pay');
 Route::post('student/pay/consult', 'MembershipController@consult');
-
+Route::post('student/pay/consult/process', 'MembershipController@consultProcess');
