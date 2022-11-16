@@ -6,7 +6,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 align="center">
-                        <i class="material-icons fs-1">add</i>Actualizar Estudiante
+                        <i class="material-icons fs-1">edit</i>Editar Estudiante
                 </h2>
               </div>
               <form method="post" action="{{url('student/'.$student->id.'/edit/storage')}}">

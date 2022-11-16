@@ -1,43 +1,34 @@
 @extends('templates.main')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-colvis-2.1.1/b-html5-2.1.1/b-print-2.1.1/date-1.1.1/fh-3.2.1/r-2.2.9/datatables.min.css"/>
+<style>
+    #tabla_filter{
+        text-align: right;
+    }
+    #tabla_paginate .pagination{
+        justify-content: flex-end
+    }
+</style>
 @section('content')
-    <div>
-        <div class="container pt-3">
-            <div class="card">
-              <div class="card-header">
-                <h2 align="center">
-                        <i class="material-icons fs-1">assignment_ind</i> Detalle del Estudiante {{$student->name}}
-                </h2>
-              </div>
-
-                <div class="card-body"> 
-                <b>Nombre: </b>{{$student->name}}<br>
-                <b>Rut: </b> {{$student->rut}}<br>
-                <b>Telefono:</b> {{$student->phone}}<br>
-                <b>Email:</b>{{$student->email}}<br>
-                <b>Fecha Nacimiento:</b>{{$student->birthday}}<br>
-                <b>Altura:</b>{{$student->height}}<br>
-                <b>Peso:</b>{{$student->weight}}<br>
-                {{--Accedo al nombre de la categoria por el metodo category creado en el modelo student--}}
-                <b>Categoria: </b> {{$student->category->name}}
-                </div>
+    <div class="card">
         
-            <div class="card-header">
+        <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <h4><i class="material-icons fs-1">assignment_turned_in</i> Membresias del Estudiante </h4>
-                
+                <h2><i class="material-icons fs-1">recent_actors</i> Lista de Categorias</h2>
+                <a  href="{{ url('category/add')}}" class="btn btn-success">
+                    <i class="material-icons">add</i>
+                    Agregar Categoria
+                </a>
             </div>
         </div>
         <div class="card-body">
             <table id="tabla" class="table table-striped table-sm table-bordered bg-white" style="width:100%" >
                 <thead>
                     <tr>
-                        <th>Mes</th>
-                        <th>Año</th>
-                        <th>Monto</th>
-                        <th>Estado</th>
-                        <th>Estudiante</th>
-                        <th>Tipo de Membresia</th>
+                        <th>Nombre Categoria</th>
+                        <th>Año de Inicio</th>
+                        <th>Año final</th>
+                        <th>Editar</th>
+                        <th>Detalle</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,14 +66,19 @@
                 },     
                 "processing" : true,
                 "serverSide" : true,
-                "ajax" : "{{ url('student/getdatamembership') }}",
+                "ajax" : "{{ url('category/getdata') }}",
                 "columns": [
-                    { "data": "month"},
-                    { "data": "year"},
-                    { "data": "ammount"},
-                    { "data": "status"},
-                    { "data": "student_id"},
-                    { "data": "membershiptype_id"}
+                    { "data": "name"},
+                    { "data": "start_year"},
+                    { "data": "end_year"},
+                    { data: "id", render : function ( data, type, row, meta ) {
+                         var buttons = '<a class="btn btn-primary" href="{{ url("category")}}/'+data+'/edit" title="Editar"><i class="material-icons">edit</i></a>';
+                        return buttons;
+                    }},
+                     { data: "id", render : function ( data, type, row, meta ) {
+                         var buttons = '<a class="btn btn-info" href="{{ url("category")}}/'+data+'/detail" title="Detail"><i class="material-icons">search</i></a>';
+                        return buttons;
+                    }}
                   
                 ],
                 language: lenguaje_es,
@@ -90,8 +86,4 @@
             });
         });
     </script>
-
-
-@stop
-
-
+ @stop

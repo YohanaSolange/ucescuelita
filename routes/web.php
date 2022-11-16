@@ -38,10 +38,22 @@ Route::group(['middleware' => ['auth']], function() {
     //mostrar pantalla para editar estudiante
     Route::get('student/{student_id}/edit', 'StudentController@showEdit');
     Route::post('student/{student_id}/edit/storage', 'StudentController@editStorage');
+    
 
     //detalles del estudiante
     Route::get('student/{student_id}/detail','StudentController@detail');
-
+    Route::get('student/getdatamembership', 'StudentController@getdatamembership');
+    Route::get('student', 'StudentController@listmembership')->name('student.detail');
+    
+     //Ruta Categorias
+     Route::get('category', 'CategoryController@list');
+     Route::get('category/getdata', 'CategoryController@getdata');
+     Route::get('category', 'CategoryController@list')->name('category.list');
+     Route::get('category/add', 'CategoryController@add');
+     Route::post('category/add/storage', 'CategoryController@addStorage');
+     Route::get('category/{category_id}/edit', 'CategoryController@showEdit');
+     Route::post('category/{category_id}/edit/storage', 'CategoryController@editStorage');
+     Route::get('category/{category_id}/detail','CategoryController@detail');
 });
 
 Route::get('student/pay', 'MembershipController@pay');
