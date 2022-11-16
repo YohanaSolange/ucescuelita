@@ -35,7 +35,7 @@
                                 <label for="login-password" class="form-label">Contraseña</label>
                                 <input type="password" name="password" class="form-control" id="login-password" aria-describedby="emailHelp">
                             </div>
-                            <div class="mb-4"><a href="#" class="link-light" style="font-size: 0.8rem">Light link</a></div>
+                            <div class="mb-4"><a href="{{url('/student/pay')}}" class="link-light" style="font-size: 0.8rem">Pagar</a></div>
                             <button type="submit" class="btn btn-outline-light w-100">
                                 <i class="material-icons">send</i> Ingresar
                             </button>
