@@ -1,5 +1,13 @@
 @extends('templates.main')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.11.3/b-2.1.1/b-colvis-2.1.1/b-html5-2.1.1/b-print-2.1.1/date-1.1.1/fh-3.2.1/r-2.2.9/datatables.min.css"/>
+<style>
+    #tabla_filter{
+        text-align: right;
+    }
+    #tabla_paginate .pagination{
+        justify-content: flex-end
+    }
+</style>
 @section('content')
     <div>
         <div class="container pt-3">
@@ -32,6 +40,7 @@
             <table id="tabla" class="table table-striped table-sm table-bordered bg-white" style="width:100%" >
                 <thead>
                     <tr>
+                        <th>id</th>
                         <th>Mes</th>
                         <th>Año</th>
                         <th>Monto</th>
@@ -77,10 +86,19 @@
                 "serverSide" : true,
                 "ajax" : "{{ url('student/'.$student->id.'/getdatamembership') }}",
                 "columns": [
+                    { "data": "id"},
                     { "data": "month"},
                     { "data": "year"},
                     { "data": "ammount"},
-                    { "data": "status"},
+                    { data: "status", render : function ( data, type, row, meta ) {
+
+                        if(status == 0){
+                            variable = '<span class="badge bg-warning">Pendiente</span>'
+                        }else{
+                            variable = '<span class="badge bg-success">pagado</span>'
+                        }
+                        return variable;
+                    }},
                     { "data": "student_id"},
                     { "data": "membershiptype_id"}
 
