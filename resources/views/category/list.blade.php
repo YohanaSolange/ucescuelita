@@ -13,7 +13,7 @@
         
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <h2><i class="material-icons fs-1">people</i> Lista de Categorias</h2>
+                <h2><i class="material-icons fs-1">recent_actors</i> Lista de Categorias</h2>
                 <a  href="{{ url('category/add')}}" class="btn btn-success">
                     <i class="material-icons">add</i>
                     Agregar Categoria

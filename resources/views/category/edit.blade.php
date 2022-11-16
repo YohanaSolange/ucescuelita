@@ -6,7 +6,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 align="center">
-                        <i class="material-icons fs-1">add</i>Actualizar Estudiante
+                        <i class="material-icons fs-1">edit</i>Editar Categoria
                 </h2>
               </div>
                <form method="post" action="{{url('category/'.$category->id.'/edit/storage')}}">
@@ -15,15 +15,15 @@
                   {{csrf_field()}}
                   
                   <div class="form-group">
-                      <label>Nombre Categoria</label>
+                      <label>Nombre de la Categoria</label>
                       <input type="text" class="form-control" name="name"  value="{{$category->name}}" required>
                   </div>
                   <div class="form-group">
-                      <label>Inicio de Año</label>
+                      <label>Año Inicial</label>
                       <input type="number" step="any" class="form-control" name="start_year"  value="{{$category->start_year}}" required>
                   </div>
                   <div class="form-group">
-                      <label>Fin de Año</label>
+                      <label>Año Final</label>
                       <input type="number" step="any" class="form-control" name="end_year"  value="{{$category->end_year}}" required>
                   </div>
 

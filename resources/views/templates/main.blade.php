@@ -224,7 +224,7 @@
                             <i class="material-icons">people</i> Estudiantes
                         </a>
                           <a class="menu-link {{(request()->is('/category')) ? 'active' : '' }}" href="{{ url('/category') }}">
-                            <i class="material-icons">people</i> Categorias
+                            <i class="material-icons">recent_actors</i> Categorias
                         </a>
                         <li class="nav-item">
                             <a class="menu-collapse {{(request()->is('config/*')) ? 'active' : '' }}">

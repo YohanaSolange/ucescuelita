@@ -6,6 +6,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Category;
+use App\Membership;
 
 
 class StudentController extends Controller
@@ -85,16 +86,28 @@ class StudentController extends Controller
     {
         //
     }
-    // llama vista list
+    // llama vista list estidiante
     public function list ()
     {
         return view ('student.list');
     }
-//crea metodo ajax que retorna los datos a un datatable
+//crea metodo ajax que retorna los datos a un datatable estudiante
     public function getdata(){
         $students = Student::all();
-        return DataTables::of($students)->make(true);
+        return DataTables::of($students)->make(true); 
     }
+//crea metodo ajax que retorna los datos a un datatable membership
+    public function getdatamembership(){
+         // $membership= Membership::finOrFail($student_id);
+         $memberships = Membership::all();
+         return DataTables::of($memberships)->make(true);
+    }
+  // llama vista list membership
+  public function listmembership ()
+  {
+      return view ('student.list');
+  }
+    
 //agregar estudiante
     public function add(){
         $students = new Student;//TODO: hay eliminar esta linea y sacar del form los values 
@@ -167,8 +180,8 @@ class StudentController extends Controller
         $student = Student::findOrFail($student_id);
 
         //dd($student->rut);
-        
-        return view ('student.detail',compact('student')); 
+
+       return view ('student.detail',compact('student')); 
 
     }
 }
