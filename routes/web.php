@@ -38,13 +38,13 @@ Route::group(['middleware' => ['auth']], function() {
     //mostrar pantalla para editar estudiante
     Route::get('student/{student_id}/edit', 'StudentController@showEdit');
     Route::post('student/{student_id}/edit/storage', 'StudentController@editStorage');
-    
+
 
     //detalles del estudiante
     Route::get('student/{student_id}/detail','StudentController@detail');
-    Route::get('student/getdatamembership', 'StudentController@getdatamembership');
+    Route::get('student/{student_id}/getdatamembership', 'StudentController@getdatamembership');
     Route::get('student', 'StudentController@listmembership')->name('student.detail');
-    
+
      //Ruta Categorias
      Route::get('category', 'CategoryController@list');
      Route::get('category/getdata', 'CategoryController@getdata');
