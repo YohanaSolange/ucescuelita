@@ -57,10 +57,7 @@ class MembershipController extends Controller
      * @param  \App\Membership  $membership
      * @return \Illuminate\Http\Response
      */
-    public function edit(Membership $membership)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -147,6 +144,27 @@ class MembershipController extends Controller
         $memberships = Membership::with('student','membershiptype')->get();
 
         return DataTables::of($memberships)->make(true);
+
+       }
+
+
+       public function edit($membership_id){
+            $membership = Membership::findOrFail($membership_id);
+
+
+            return view('membership.edit',compact('membership'));
+       }
+
+       public function editStorage(Request $request, $membership_id){
+            $membership = Membership::findOrFail($membership_id);
+
+            $membership->update($request->all());
+
+
+            $msj = 'Membresia ' . $membership->id . ' Actualizada';
+            $redict ='/membership';
+            return view('templates.msj',compact('msj','redict'));
+
 
        }
 }

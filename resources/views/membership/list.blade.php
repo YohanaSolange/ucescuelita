@@ -128,7 +128,7 @@
 
                     }},
                     { data: "id", render : function ( data, type, row, meta ) {
-                       variable = '<a href="#" class="btn btn-primary"><i class="material-icons">edit</i> Editar</a>'
+                       variable ='<a class="btn btn-primary" href="{{ url("membership/")}}/'+data+'/edit" title="Editar"><i class="material-icons">edit</i>Editar</a>'
                         return variable;
 
                     }}

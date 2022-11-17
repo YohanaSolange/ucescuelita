@@ -58,6 +58,10 @@ Route::group(['middleware' => ['auth']], function() {
      //Rutas de membresias
      Route::get('membership','MembershipController@list');
      Route::get('membership/getdata','MembershipController@getdata');
+     Route::get('membership/{membership_id}/edit','MembershipController@edit');
+     Route::post('membership/{membership_id}/edit/storage','MembershipController@editStorage');
+
+
 });
 
 Route::get('student/pay', 'MembershipController@pay');
