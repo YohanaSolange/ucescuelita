@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Membership;
 use Illuminate\Http\Request;
 use App\Student;
+use Yajra\DataTables\DataTables;
 
 class MembershipController extends Controller
 {
@@ -125,5 +126,18 @@ class MembershipController extends Controller
         //TODO: se deben añadir validaciones y posible integracion con webpay?
 
         echo "Se ha realizado el pago con exito !" .$request['rut'];
+       }
+
+
+       public function list(){
+
+        return view('membership.list');
+       }
+
+       public function getdata(){
+        $memberships = Membership::with('student','membershiptype')->get();
+
+        return DataTables::of($memberships)->make(true);
+
        }
 }

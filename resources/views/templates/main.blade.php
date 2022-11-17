@@ -36,7 +36,7 @@
                 color:black;
                 transition: padding-left 0.8s;
             }
-            
+
             #sidebar-toggle{
                 display: none;
             }
@@ -80,13 +80,13 @@
                     left:0px;
                     -webkit-box-shadow: 35px 38px 23px -37px #000000;
                     box-shadow: 35px 38px 23px -37px #000000;
-                    
+
                 }
                 #sidebar-toggle{
                     display: inline-block;
                 }
             }
-            
+
             .scroll-style{
                 overflow-y:auto;
             }
@@ -115,7 +115,7 @@
             .menu-collapse:hover{
                 color: #f5f5f5;
             }
-            
+
             .menu-collapse.active{
                 color: white;
             }
@@ -127,11 +127,11 @@
                 transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
                 cursor: pointer;
             }
-            
+
             .menu-link:hover{
                 color: #f5f5f5;
             }
-            
+
             .menu-link.active{
                 color: white;
             }
@@ -163,7 +163,7 @@
                 overflow-y: hidden;
                 padding-left: 10px;
                 background: rgba(0,0,0,0.2)
-            }            
+            }
             .menu-collapse.active + .menu-items{
                 height: auto;
             }
@@ -226,6 +226,11 @@
                           <a class="menu-link {{(request()->is('/category')) ? 'active' : '' }}" href="{{ url('/category') }}">
                             <i class="material-icons">recent_actors</i> Categorias
                         </a>
+
+                        <a class="menu-link {{(request()->is('/membership')) ? 'active' : '' }}" href="{{ url('/membership') }}">
+                            <i class="material-icons">attach_money</i> Mensualidades
+                        </a>
+
                         <li class="nav-item">
                             <a class="menu-collapse {{(request()->is('config/*')) ? 'active' : '' }}">
                                 <i class="material-icons">settings</i> Configurar

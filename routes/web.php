@@ -54,6 +54,10 @@ Route::group(['middleware' => ['auth']], function() {
      Route::get('category/{category_id}/edit', 'CategoryController@showEdit');
      Route::post('category/{category_id}/edit/storage', 'CategoryController@editStorage');
      Route::get('category/{category_id}/detail','CategoryController@detail');
+
+     //Rutas de membresias
+     Route::get('membership','MembershipController@list');
+     Route::get('membership/getdata','MembershipController@getdata');
 });
 
 Route::get('student/pay', 'MembershipController@pay');
