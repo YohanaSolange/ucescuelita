@@ -42,10 +42,10 @@
             <div class="col ">
                 <div class="card bg-success text-white m-2" align="center">
                     <div class="card-header">
-                        Monto Recaudado Noviembre
+                        Monto Recaudado
                     </div>
                     <div class="card-body">
-                        <h1>$18500</h1>
+                        <h1>$ {{$monto_recaudado}}</h1>
                     </div>
                 </div>
             </div>
@@ -55,27 +55,27 @@
                     Monto Adeudado Noviembre
                 </div>
                 <div class="card-body">
-                    <h1>$250000</h1>
+                    <h1>$ {{$monto_adeudado}}</h1>
                 </div>
             </div>
             </div>
             <div class="col ">
             <div class="card bg-warning text-white m-2" align="center">
                 <div class="card-header">
-                    Matriculas Pendientes de Pago
+                    Mensualidades Pendientes
                 </div>
                 <div class="card-body">
-                    <h1>10</h1>
+                    <h1>{{$mensualidades_pendientes}}</h1>
                 </div>
             </div>
             </div>
             <div class="col ">
             <div class="card bg-secondary text-white m-2" align="center">
                 <div class="card-header">
-                    Mensualidades Pendientes
+                    Matriculas Pendientes
                 </div>
                 <div class="card-body">
-                    <h1>10</h1>
+                    <h1>{{$matriculas_pendientes}}</h1>
                 </div>
             </div>
             </div>
