@@ -90,11 +90,26 @@
 
                     }},
                     { data: "status", render : function ( data, type, row, meta ) {
+                        //pregunto si el registro existe
+                        if(row.enabled == 1){
+                            //pregunto si el registro esta pagado o no
+                            if(row.status == 1){
+                                variable = '<span class="badge bg-success">Pagado</span>';
+                            } else {
+                                variable = '<span class="badge bg-warning">Pendiente</span>';
+                            }
+                        }else{
+                            variable = '<span class="badge bg-danger">Anulado</span>';
+                        }
 
-                        return row.status;
+                        return variable;
 
                     }},
-                    { "data": "birthday"}
+                    { data: "id", render : function ( data, type, row, meta ) {
+                       variable = '<a href="#" class="btn btn-primary"><i class="material-icons">edit</i> Editar</a>'
+                        return variable;
+
+                    }}
 
                 ],
                 language: lenguaje_es,
