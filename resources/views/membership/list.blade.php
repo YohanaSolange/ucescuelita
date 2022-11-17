@@ -17,10 +17,32 @@
             </div>
         </div>
         <div class="card-body">
-            <div>
-                Monto adeudado mes actual: $123123<br/>
-                Monto recaudado mes actual: $123123<br/>
+
+            <div class="row">
+                <div class="col ">
+                    <div class="card bg-success text-white m-2" align="center">
+                        <div class="card-header">
+                            Monto Recaudado
+                        </div>
+                        <div class="card-body">
+                            <h1>$ {{$monto_recaudado}}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ">
+                <div class="card bg-danger text-white m-2" align="center">
+                    <div class="card-header">
+                    Monto Adeudado
+                    </div>
+                    <div class="card-body">
+                        <h1>$ {{$monto_adeudado}}</h1>
+                    </div>
+                </div>
+                </div>
+
+
             </div>
+
             <table id="tabla" class="table table-striped table-sm table-bordered bg-white" style="width:100%" >
                 <thead>
                     <tr>

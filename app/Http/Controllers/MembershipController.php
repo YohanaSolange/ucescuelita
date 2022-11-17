@@ -131,7 +131,16 @@ class MembershipController extends Controller
 
        public function list(){
 
-        return view('membership.list');
+        //obtiene todos los Membership ACTIVOS con status 0 (pendiente de pago)
+        $monto_adeudado = Membership::where('enabled','=',1)
+                            ->where('status','=',0)
+                            ->sum('ammount');
+        //obtiene todos los Membership ACTIVOS con status 1 (pagados)
+        $monto_recaudado = Membership::where('enabled','=',1)
+                            ->where('status','=',1)
+                            ->sum('ammount');
+
+        return view('membership.list',compact('monto_adeudado','monto_recaudado'));
        }
 
        public function getdata(){
