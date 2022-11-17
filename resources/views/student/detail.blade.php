@@ -45,7 +45,6 @@
                         <th>Año</th>
                         <th>Monto</th>
                         <th>Estado</th>
-                        <th>Estudiante</th>
                         <th>Tipo de Membresia</th>
                     </tr>
                 </thead>
@@ -91,19 +90,24 @@
                     { "data": "year"},
                     { "data": "ammount"},
                     { data: "status", render : function ( data, type, row, meta ) {
-                        if(data == 0){
+                        if(row.enabled == 1){
+                            if(data == 0){
                             variable = '<span class="badge bg-warning">Pendiente</span>'
+                            }else{
+                                variable = '<span class="badge bg-success">Pagado</span>'
+                            }
                         }else{
-                            variable = '<span class="badge bg-success">pagado</span>'
+                            variable = '<span class="badge bg-danger">Anulado</span>'
+
                         }
+
                         return variable;
                     }},
-                    { "data": "student_id"},
                     { data: "membershiptype.name", render : function ( data, type, row, meta ) {
-                        if(data == "membresia"){
-                            variable = '<span class="badge bg-warning">Pendiente</span>'
+                        if(data == "Mensualidad"){
+                            variable = '<span class="badge bg-primary">Mensualidad</span>'
                         }else{
-                            variable = '<span class="badge bg-success">pagado</span>'
+                            variable = '<span class="badge bg-info">Matricula</span>'
                         }
                         return variable;
                     }},

@@ -50,12 +50,12 @@
 
                         <th>Nombre</th>
                         <th>Rut</th>
-                        <th>E-mail</th>
-                        <th>Telefono</th>
-                        <th>Fecha Nacimiento</th>
+                        <th>Año</th>
+                        <th>Mes</th>
+                        <th>Monto</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
                         <th>Editar</th>
-                        <th>Detalle</th>
-                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
