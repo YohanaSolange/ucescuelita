@@ -91,8 +91,7 @@
                     { "data": "year"},
                     { "data": "ammount"},
                     { data: "status", render : function ( data, type, row, meta ) {
-
-                        if(status == 0){
+                        if(data == 0){
                             variable = '<span class="badge bg-warning">Pendiente</span>'
                         }else{
                             variable = '<span class="badge bg-success">pagado</span>'
@@ -100,7 +99,14 @@
                         return variable;
                     }},
                     { "data": "student_id"},
-                    { "data": "membershiptype_id"}
+                    { data: "membershiptype.name", render : function ( data, type, row, meta ) {
+                        if(data == "membresia"){
+                            variable = '<span class="badge bg-warning">Pendiente</span>'
+                        }else{
+                            variable = '<span class="badge bg-success">pagado</span>'
+                        }
+                        return variable;
+                    }},
 
                 ],
                 language: lenguaje_es,

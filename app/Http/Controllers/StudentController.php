@@ -101,7 +101,10 @@ class StudentController extends Controller
     //crea metodo ajax que retorna los datos a un datatable membership
     public function getdatamembership($student_id){
          // $membership= Membership::finOrFail($student_id);
-         $memberships = Membership::where('student_id','=',$student_id)->get();
+         $memberships = Membership::where('student_id','=',$student_id)
+                        ->with('membershiptype')
+                        ->get();
+
          return DataTables::of($memberships)->make(true);
     }
   // llama vista list membership
