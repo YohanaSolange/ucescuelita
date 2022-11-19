@@ -19,13 +19,13 @@
             flex-grow: 1;
         }
         .graf-dona{
-            position: relative; 
-            height:100px; 
+            position: relative;
+            height:100px;
             width:100px
         }
         .graf-bar{
-            position: relative; 
-            height:100px; 
+            position: relative;
+            height:100px;
             width:200px
         }
         .row{
@@ -42,81 +42,45 @@
             <div class="col ">
                 <div class="card bg-success text-white m-2" align="center">
                     <div class="card-header">
-                        Trabajos realizados
+                        Monto Recaudado
                     </div>
                     <div class="card-body">
-                        <h1>10</h1>
+                        <h1>$ {{$monto_recaudado}}</h1>
                     </div>
                 </div>
             </div>
             <div class="col ">
             <div class="card bg-danger text-white m-2" align="center">
                 <div class="card-header">
-                    Trabajos realizados
+                    Monto Adeudado Noviembre
                 </div>
                 <div class="card-body">
-                    <h1>10</h1>
+                    <h1>$ {{$monto_adeudado}}</h1>
                 </div>
             </div>
             </div>
             <div class="col ">
             <div class="card bg-warning text-white m-2" align="center">
                 <div class="card-header">
-                    Trabajos realizados
+                    Mensualidades Pendientes
                 </div>
                 <div class="card-body">
-                    <h1>10</h1>
+                    <h1>{{$mensualidades_pendientes}}</h1>
                 </div>
             </div>
             </div>
             <div class="col ">
-            <div class="card bg-info text-white m-2" align="center">
+            <div class="card bg-secondary text-white m-2" align="center">
                 <div class="card-header">
-                    Trabajos realizados
+                    Matriculas Pendientes
                 </div>
                 <div class="card-body">
-                    <h1>10</h1>
+                    <h1>{{$matriculas_pendientes}}</h1>
                 </div>
             </div>
             </div>
         </div>
-        <div class="row m-0">
-            <div class="col ">
-            <div class="card bg-ligth text-black m-2  col" align="center">
-                <div class="card-header">
-                    Trabajos realizados
-                </div>
-                <div class="card-body">
-                    <div class="graf-container">
-                        <div class="graf-legend">
-                            
-                        </div>
-                        <div class="graf-bar">
-                            <canvas id="myChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
 
-            <div class="col ">
-                <div class="card bg-ligth text-black m-2  col" align="center">
-                    <div class="card-header">
-                        Trabajos realizados
-                    </div>
-                    <div class="card-body">
-                        <div class="graf-container">
-                            <div class="graf-legend">
-                                
-                            </div>
-                            <div class="graf-dona">
-                                <canvas id="myChart2"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
     <script src="{{url('/js/chart.options.js')}}"></script>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentsTable extends Migration
+class AddColumsToSicksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('rut');
+        Schema::table('sicks', function (Blueprint $table) {
             $table->string('name');
-            $table->string('phone');
-            $table->string('email')->nullable();
-            $table->date('birthday');
+            //
         });
     }
 
@@ -31,6 +26,9 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::table('sicks', function (Blueprint $table) {
+            $table->dropColumns(['name']);
+            //
+        });
     }
 }
