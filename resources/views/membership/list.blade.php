@@ -9,43 +9,53 @@
     }
 </style>
 @section('content')
-    <div>
-        <div class="container pt-3">
-            <div class="card">
-              <div class="card-header">
-                <h2 align="center">
-                        <i class="material-icons fs-1">assignment_ind</i> Detalle del Estudiante {{$student->name}}
-                </h2>
-              </div>
+    <div class="card">
 
-                <div class="card-body">
-                <b>Nombre: </b>{{$student->name}}<br>
-                <b>Rut: </b> {{$student->rut}}<br>
-                <b>Telefono:</b> {{$student->phone}}<br>
-                <b>Email:</b>{{$student->email}}<br>
-                <b>Fecha Nacimiento:</b>{{$student->birthday}}<br>
-                <b>Altura:</b>{{$student->height}}<br>
-                <b>Peso:</b>{{$student->weight}}<br>
-                {{--Accedo al nombre de la categoria por el metodo category creado en el modelo student--}}
-                <b>Categoria: </b> {{$student->category->name}}
-                </div>
-
-            <div class="card-header">
+        <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <h4><i class="material-icons fs-1">assignment_turned_in</i> Membresias del Estudiante </h4>
-
+                <h2><i class="material-icons fs-1">attach_money</i>Membresias</h2>
             </div>
         </div>
         <div class="card-body">
+
+            <div class="row">
+                <div class="col ">
+                    <div class="card bg-success text-white m-2" align="center">
+                        <div class="card-header">
+                            Monto Recaudado
+                        </div>
+                        <div class="card-body">
+                            <h1>$ {{$monto_recaudado}}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ">
+                <div class="card bg-danger text-white m-2" align="center">
+                    <div class="card-header">
+                    Monto Adeudado
+                    </div>
+                    <div class="card-body">
+                        <h1>$ {{$monto_adeudado}}</h1>
+                    </div>
+                </div>
+                </div>
+
+
+            </div>
+
             <table id="tabla" class="table table-striped table-sm table-bordered bg-white" style="width:100%" >
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Mes</th>
+                        <th>Id</th>
+
+                        <th>Nombre</th>
+                        <th>Rut</th>
                         <th>Año</th>
+                        <th>Mes</th>
                         <th>Monto</th>
+                        <th>Tipo</th>
                         <th>Estado</th>
-                        <th>Tipo de Membresia</th>
+                        <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,34 +93,45 @@
                 },
                 "processing" : true,
                 "serverSide" : true,
-                "ajax" : "{{ url('student/'.$student->id.'/getdatamembership') }}",
+                "ajax" : "{{ url('membership/getdata') }}",
                 "columns": [
                     { "data": "id"},
-                    { "data": "month"},
+                    { "data": "student.name"},
+                    { "data": "student.rut"},
                     { "data": "year"},
+                    { "data": "month"},
                     { "data": "ammount"},
-                    { data: "status", render : function ( data, type, row, meta ) {
-                        if(row.enabled == 1){
-                            if(data == 0){
-                            variable = '<span class="badge bg-warning">Pendiente</span>'
-                            }else{
-                                variable = '<span class="badge bg-success">Pagado</span>'
-                            }
-                        }else{
-                            variable = '<span class="badge bg-danger">Anulado</span>'
-
-                        }
-
-                        return variable;
-                    }},
                     { data: "membershiptype.name", render : function ( data, type, row, meta ) {
                         if(data == "Mensualidad"){
-                            variable = '<span class="badge bg-primary">Mensualidad</span>'
+                            variable = '<span class="badge bg-primary">Mensualidad</span>';
                         }else{
-                            variable = '<span class="badge bg-info">Matricula</span>'
+                            variable = '<span class="badge bg-info">Matricula</span>';
                         }
+
                         return variable;
+
                     }},
+                    { data: "status", render : function ( data, type, row, meta ) {
+                        //pregunto si el registro existe
+                        if(row.enabled == 1){
+                            //pregunto si el registro esta pagado o no
+                            if(row.status == 1){
+                                variable = '<span class="badge bg-success">Pagado</span>';
+                            } else {
+                                variable = '<span class="badge bg-warning">Pendiente</span>';
+                            }
+                        }else{
+                            variable = '<span class="badge bg-danger">Anulado</span>';
+                        }
+
+                        return variable;
+
+                    }},
+                    { data: "id", render : function ( data, type, row, meta ) {
+                       variable ='<a class="btn btn-primary" href="{{ url("membership/")}}/'+data+'/edit" title="Editar"><i class="material-icons">edit</i>Editar</a>'
+                        return variable;
+
+                    }}
 
                 ],
                 language: lenguaje_es,
@@ -118,8 +139,4 @@
             });
         });
     </script>
-
-
-@stop
-
-
+ @stop

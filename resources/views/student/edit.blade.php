@@ -6,7 +6,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 align="center">
-                        <i class="material-icons fs-1">add_box</i>Actualizar Estudiante
+                        <i class="material-icons fs-1">edit</i>Editar Estudiante
                 </h2>
               </div>
               <form method="post" action="{{url('student/'.$student->id.'/edit/storage')}}">
@@ -32,7 +32,29 @@
                       <label>Fecha de Nacimiento</label>
                       <input type="date" class="form-control" name="birthday"  value="{{$student->birthday}}" required>
                   </div>
+                  <div class="form-group">
+                      <label>Altura</label>
+                      <input type="number"  step="any" class="form-control" name="height"  value="{{$student->height}}">
+                  </div>
+                  <div class="form-group">
+                      <label>Peso</label>
+                      <input type="number" step="any" class="form-control" name="weight"  value="{{$student->weight}}">
+                  </div>
+                 <div class="form-group"> 
+                    <label>Categoria</label>
+                    <select class="form-select" aria-label="Default select example" name="category_id" required>
+                     <option value=""> Seleccione una Categoria</option> 
+                     @foreach($categories as $category) 
+                        {{--Si el category->id es igual al student->id muestra esto--}}
+                        @if($category->id==$student->category_id)
+                        <option selected value="{{$category->id}}">{{$category->name}}</option>
+                        @else
+                        <option value="{{$category->id}}">{{$category->name}}</option>
 
+                        @endif
+                     @endforeach
+                     </select>
+                     </div>
 
                  
                 </div>

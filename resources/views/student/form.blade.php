@@ -32,8 +32,23 @@
                       <label>Fecha de Nacimiento</label>
                       <input type="date" class="form-control" name="birthday"  value="{{$students->birthday}}" required>
                   </div>
-
-
+                  <div class="form-group">
+                      <label>Altura</label>
+                      <input type="number" step="any" class="form-control" name="height"  value="{{$students->height}}">
+                  </div>
+                  <div class="form-group">
+                      <label>Peso</label>
+                      <input type="number" step="any" class="form-control" name="weight"  value="{{$students->weight}}">
+                  </div>
+                    <div class="form-group"> 
+                    <label>Categoria</label>
+                    <select class="form-select" aria-label="Default select example" name="category_id" required>
+                     <option value=""> Seleccione una Categoria</option> 
+                     @foreach($categories as $category) 
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                     @endforeach
+                     </select>
+                     </div>
                  
                 </div>
                 <div class="card-footer d-flex  justify-content-between">
