@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('student/{student_id}/detail','StudentController@detail');
     Route::get('student/{student_id}/getdatamembership', 'StudentController@getdatamembership');
     Route::get('student', 'StudentController@listmembership')->name('student.detail');
+    Route::get('student/{student_id}/pdf','StudentController@pdf');
+
 
      //Ruta Categorias
      Route::get('category', 'CategoryController@list');
