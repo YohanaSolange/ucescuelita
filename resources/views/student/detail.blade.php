@@ -27,7 +27,9 @@
                 <b>Altura:</b>{{$student->height}}<br>
                 <b>Peso:</b>{{$student->weight}}<br>
                 {{--Accedo al nombre de la categoria por el metodo category creado en el modelo student--}}
-                <b>Categoria: </b> {{$student->category->name}}
+                <b>Categoria: </b> {{$student->category->name}}<br/>
+                <br/>
+                <a href="{{url('student/'.$student->id.'/pdf')}}" class="btn btn-primary"><i class="material-icons">assignment_turned_in</i>Generar Ficha Estudiante</a>
                 </div>
 
             <div class="card-header">

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Category;
 use App\Membership;
-
+use Barryvdh\DomPDF\Facade as PDF;
 
 class StudentController extends Controller
 {
@@ -228,5 +228,14 @@ class StudentController extends Controller
 
        return view ('student.detail',compact('student'));
 
+    }
+
+    public function pdf($student_id){
+
+        $student = Student::findOrFail($student_id);
+
+        //metodo que retorna el pdf con la libreria dom pdf
+        $pdf = PDF::loadView('student.pdf', compact('student'))->setOptions(['isRemoteEnabled' => true,'name'=>'Ficha Estudiante']);
+        return $pdf->stream('invoice.pdf');
     }
 }
