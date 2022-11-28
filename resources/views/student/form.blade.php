@@ -40,6 +40,10 @@
                       <label>Peso</label>
                       <input type="number" step="any" class="form-control" name="weight"  value="{{$students->weight}}">
                   </div>
+                   <div class="form-group">
+                      <label>Mensualidad</label>
+                      <input type="number" step="any" class="form-control" name="month_ammount" value="{{$students->month_ammount}}">
+                  </div>
                     <div class="form-group"> 
                     <label>Categoria</label>
                     <select class="form-select" aria-label="Default select example" name="category_id" required>
