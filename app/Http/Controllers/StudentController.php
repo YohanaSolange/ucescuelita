@@ -125,11 +125,7 @@ class StudentController extends Controller
     public function addStorage(Request $request){
 
         $input= $request->all();
-
-
         $student = Student::create($input);
-
-
         //TODO: Generar las membresias del estudiante recien creado
         $month = now()->month;
         $year = now()->year;
@@ -150,7 +146,7 @@ class StudentController extends Controller
                 "student_id" => $student->id,
                 "month" => $i,
                 "year" => $year,
-                "ammount" => 25000,
+                "ammount" => $student->month_ammount,
                 "membershiptype_id" => 1,
                 "status" => 0
             ]);
@@ -162,7 +158,7 @@ class StudentController extends Controller
                 "student_id" => $student->id,
                 "month" => $i,
                 "year" => $year + 1,
-                "ammount" => 25000,
+                "ammount" => $student->month_ammount,
                 "membershiptype_id" => 1,
                 "status" => 0
             ]);
