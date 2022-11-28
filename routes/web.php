@@ -38,13 +38,15 @@ Route::group(['middleware' => ['auth']], function() {
     //mostrar pantalla para editar estudiante
     Route::get('student/{student_id}/edit', 'StudentController@showEdit');
     Route::post('student/{student_id}/edit/storage', 'StudentController@editStorage');
-    
+
 
     //detalles del estudiante
     Route::get('student/{student_id}/detail','StudentController@detail');
-    Route::get('student/getdatamembership', 'StudentController@getdatamembership');
+    Route::get('student/{student_id}/getdatamembership', 'StudentController@getdatamembership');
     Route::get('student', 'StudentController@listmembership')->name('student.detail');
-    
+    Route::get('student/{student_id}/pdf','StudentController@pdf');
+
+
      //Ruta Categorias
      Route::get('category', 'CategoryController@list');
      Route::get('category/getdata', 'CategoryController@getdata');
@@ -54,6 +56,14 @@ Route::group(['middleware' => ['auth']], function() {
      Route::get('category/{category_id}/edit', 'CategoryController@showEdit');
      Route::post('category/{category_id}/edit/storage', 'CategoryController@editStorage');
      Route::get('category/{category_id}/detail','CategoryController@detail');
+
+     //Rutas de membresias
+     Route::get('membership','MembershipController@list');
+     Route::get('membership/getdata','MembershipController@getdata');
+     Route::get('membership/{membership_id}/edit','MembershipController@edit');
+     Route::post('membership/{membership_id}/edit/storage','MembershipController@editStorage');
+
+
 });
 
 Route::get('student/pay', 'MembershipController@pay');

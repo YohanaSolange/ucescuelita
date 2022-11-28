@@ -16,5 +16,9 @@ class Student extends Model
         //yo la clase student pertenesco a la clase category
         return $this->belongsTo(Category::class);
     }
-    
+
+    public function memberships(){
+        return $this->hasMany(Membership::class);
+    }
+
 }

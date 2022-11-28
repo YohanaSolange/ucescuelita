@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Category;
 use App\Membership;
-
+use Barryvdh\DomPDF\Facade as PDF;
 
 class StudentController extends Controller
 {
@@ -94,12 +94,17 @@ class StudentController extends Controller
 //crea metodo ajax que retorna los datos a un datatable estudiante
     public function getdata(){
         $students = Student::all();
-        return DataTables::of($students)->make(true); 
+        return DataTables::of($students)->make(true);
     }
-//crea metodo ajax que retorna los datos a un datatable membership
-    public function getdatamembership(){
+
+
+    //crea metodo ajax que retorna los datos a un datatable membership
+    public function getdatamembership($student_id){
          // $membership= Membership::finOrFail($student_id);
-         $memberships = Membership::all();
+         $memberships = Membership::where('student_id','=',$student_id)
+                        ->with('membershiptype')
+                        ->get();
+
          return DataTables::of($memberships)->make(true);
     }
   // llama vista list membership
@@ -107,27 +112,67 @@ class StudentController extends Controller
   {
       return view ('student.list');
   }
-    
-//agregar estudiante
-    public function add(){
-        $students = new Student;//TODO: hay eliminar esta linea y sacar del form los values 
 
-        $categories = Category::all();//me trae todo el registro de la tabla category 
+    //agregar estudiante
+    public function add(){
+        $students = new Student;//TODO: hay eliminar esta linea y sacar del form los values
+
+        $categories = Category::all();//me trae todo el registro de la tabla category
         return view('Student.form',compact('students','categories'));
     }
-//extraer los datos del registro del estudiante 
+
+    //extraer los datos del registro del estudiante
     public function addStorage(Request $request){
-           
+
         $input= $request->all();
-        
-    
+
+
         $student = Student::create($input);
+
+
         //TODO: Generar las membresias del estudiante recien creado
-        
+        $month = now()->month;
+        $year = now()->year;
+
+        //crea la matricula
+        Membership::create([
+            "student_id" => $student->id,
+            "month" => $month,
+            "year" => $year,
+            "ammount" => 30000,
+            "membershiptype_id" => 2,
+            "status" => 0
+        ]);
+
+        //iteracion para los meses que quedan
+        for($i = $month; $i <= 12; $i++){
+            Membership::create([
+                "student_id" => $student->id,
+                "month" => $i,
+                "year" => $year,
+                "ammount" => 25000,
+                "membershiptype_id" => 1,
+                "status" => 0
+            ]);
+        }
+
+        //iteracion para enero y febrero del siguiente año
+        for($i = 1; $i <= 2; $i++){
+            Membership::create([
+                "student_id" => $student->id,
+                "month" => $i,
+                "year" => $year + 1,
+                "ammount" => 25000,
+                "membershiptype_id" => 1,
+                "status" => 0
+            ]);
+        }
+
+
         $msj= 'Estudiante agregado Correctamente';
         $redict='/student';
         return view ('templates.msj',compact('msj','redict'));
-        
+
         /**$students = new Student($id);
             $students->name;
             $students->rut;
@@ -152,8 +197,8 @@ class StudentController extends Controller
     }
 
     public function editStorage(Request $request, $student_id){
-       
-     
+
+
         //Si encuentra el ID edita
         $student = Student::findOrFail($student_id);
         $student->update($request->all());
@@ -170,7 +215,7 @@ class StudentController extends Controller
        // return redirect()->to('/');
         #activitypush('AGREGA', 'PERSONA AGREGA USUARIO');
         #return redirect()->route('student.list')->with('success', 'Estudiante editado correctamente');
-        
+
 
     }
 
@@ -181,7 +226,16 @@ class StudentController extends Controller
 
         //dd($student->rut);
 
-       return view ('student.detail',compact('student')); 
+       return view ('student.detail',compact('student'));
 
+    }
+
+    public function pdf($student_id){
+
+        $student = Student::findOrFail($student_id);
+
+        //metodo que retorna el pdf con la libreria dom pdf
+        $pdf = PDF::loadView('student.pdf', compact('student'))->setOptions(['isRemoteEnabled' => true,'name'=>'Ficha Estudiante']);
+        return $pdf->stream('invoice.pdf');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Membership;
 use Illuminate\Http\Request;
 use App\Student;
+use Yajra\DataTables\DataTables;
 
 class MembershipController extends Controller
 {
@@ -56,10 +57,7 @@ class MembershipController extends Controller
      * @param  \App\Membership  $membership
      * @return \Illuminate\Http\Response
      */
-    public function edit(Membership $membership)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -125,5 +123,48 @@ class MembershipController extends Controller
         //TODO: se deben añadir validaciones y posible integracion con webpay?
 
         echo "Se ha realizado el pago con exito !" .$request['rut'];
+       }
+
+
+       public function list(){
+
+        //obtiene todos los Membership ACTIVOS con status 0 (pendiente de pago)
+        $monto_adeudado = Membership::where('enabled','=',1)
+                            ->where('status','=',0)
+                            ->sum('ammount');
+        //obtiene todos los Membership ACTIVOS con status 1 (pagados)
+        $monto_recaudado = Membership::where('enabled','=',1)
+                            ->where('status','=',1)
+                            ->sum('ammount');
+
+        return view('membership.list',compact('monto_adeudado','monto_recaudado'));
+       }
+
+       public function getdata(){
+        $memberships = Membership::with('student','membershiptype')->get();
+
+        return DataTables::of($memberships)->make(true);
+
+       }
+
+
+       public function edit($membership_id){
+            $membership = Membership::findOrFail($membership_id);
+
+
+            return view('membership.edit',compact('membership'));
+       }
+
+       public function editStorage(Request $request, $membership_id){
+            $membership = Membership::findOrFail($membership_id);
+
+            $membership->update($request->all());
+
+
+            $msj = 'Membresia ' . $membership->id . ' Actualizada';
+            $redict ='/membership';
+            return view('templates.msj',compact('msj','redict'));
+
+
        }
 }
