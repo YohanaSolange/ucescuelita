@@ -13,22 +13,26 @@
     <div class="card">
         
         <div class="w3-red">
-            <!--    <div class="success">
-                    <h2><i class="material-icons fs-1" >done_all</i> {{$msj}}</h2>  
-                    </div>
-            !-->
-            
-            
-            <h3><div class="alert alert-success" role="alert">{{$msj}}</h3>
-           
-            
+            <div class="success">
+                <h2><i class="material-icons fs-1" >live_help</i> {{$msjconfirmation}}</h2>  
+            </div>
+
 
             <br> </br>
-                <a  href="{{ url($redict)}}" class="btn btn-success ">
-                    <i class="material-icons ">reply_all</i>
-                    Volver 
+         
+            
+                <a  href="{{ url($redict)}}" class="btn btn-Dark " >
+                    <i class="material-icons ">cancel</i>
+                    No
                 </a>
-            </div>
+                
+                <a  href="{{ url($redictok)}}" class="btn btn-Success" >
+                    <i class="material-icons ">check</i>
+                    Sí
+                </a>
+
+
+
               
         </div>
     </div>

@@ -226,6 +226,43 @@ class StudentController extends Controller
 
     }
 
+    public function delete($student_id){
+        //Si encuentra el ID edita
+        $student = Student::findOrFail($student_id);
+        $redict='/student';
+        $activo=$student->enabled;
+      //  $student->enabled=  $activo;
+        $redictok='student/'.$student_id.'/delete/'.$activo.'/process';
+        $msjconfirmation = '¿Esta seguro de eliminar al Estudiante '. $student->name.'?';
+   
+        return view('templates.msjconfirmation',compact('msjconfirmation','redict','redictok'));
+    }
+
+    public function deleteprocess($student_id, $activo){
+          //Si encuentra el ID edita
+        $student = Student::findOrFail($student_id);
+       // $activo=1;
+        $activo=$student->enabled;
+
+        if ($student->enabled==1){
+        $inactivo=0;
+        $student->enabled=  $inactivo;
+        $student->save();
+
+        $msj = 'El estudiante '.$student->name.' a sido eliminado';
+        $redict ='/student';
+        return view('templates.msj',compact('msj','redict')); 
+
+        }else {
+        $msj = 'El estudiante '.$student->name.' ya se encontraba DESACTIVADO EN EL SISTEMA';
+        $redict ='/student';
+        return view('templates.msj',compact('msj','redict')); 
+        }
+        //dd($student->enabled); //1 habilitado
+    
+   
+}
+
     public function pdf($student_id){
 
         $student = Student::findOrFail($student_id);

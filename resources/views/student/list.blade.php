@@ -84,8 +84,10 @@
                          var buttons = '<a class="btn btn-info" href="{{ url("student")}}/'+data+'/detail" title="Detail"><i class="material-icons">search</i></a>';
                         return buttons;
                     }},
-                    { "data": "birthday"}
-                  
+                    { data: "id", render : function ( data, type, row, meta ) {
+                         var buttons = '<a class="btn btn-Danger" href="{{ url("student")}}/'+data+'/delete" title="Delete"><i class="material-icons">delete</i></a>';
+                        return buttons;
+                    }}
                 ],
                 language: lenguaje_es,
                 "order": [[ 0, "desc" ]]
