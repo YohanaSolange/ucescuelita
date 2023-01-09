@@ -31,7 +31,7 @@
                         <th>Fecha Nacimiento</th>
                         <th>Editar</th>
                         <th>Detalle</th>
-                        <th>Eliminar</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,8 +85,14 @@
                         return buttons;
                     }},
                     { data: "id", render : function ( data, type, row, meta ) {
-                         var buttons = '<a class="btn btn-Danger" href="{{ url("student")}}/'+data+'/delete" title="Delete"><i class="material-icons">delete</i></a>';
-                        return buttons;
+                    
+                        if (row.enabled==1){
+                        var buttons = '<a class="btn btn-Danger" href="{{ url("student")}}/'+data+'/delete" title="Desactivar"><i class="material-icons">delete</i>Borrar</a>';
+                    }else{
+                        var buttons = '<a class="btn btn-secondary" href="{{ url("student")}}/'+data+'/activate" title="Activar"><i class="material-icons">verified_user</i>Activar</a>';
+                        
+                    }
+                         return buttons;
                     }}
                 ],
                 language: lenguaje_es,

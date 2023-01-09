@@ -45,8 +45,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('student/{student_id}/getdatamembership', 'StudentController@getdatamembership');
     Route::get('student', 'StudentController@listmembership')->name('student.detail');
     Route::get('student/{student_id}/pdf','StudentController@pdf');
+
+    //eliminar/activar el estudiante
     Route::get('student/{student_id}/delete','StudentController@delete');
+    //Route::get('student/{student_id}/delete/{activo}/process/{membershipactivo}','StudentController@deleteprocess');
+    Route::get('student/{student_id}/activate/{activo}/process','StudentController@deleteprocess');
     Route::get('student/{student_id}/delete/{activo}/process','StudentController@deleteprocess');
+    Route::get('student/{student_id}/activate','StudentController@delete');
 
      //Ruta Categorias
      Route::get('category', 'CategoryController@list');

@@ -14,7 +14,7 @@
         
         <div class="w3-red">
             <div class="success">
-                <h2><i class="material-icons fs-1" >live_help</i> {{$msjconfirmation}}</h2>  
+                <h2><i class="material-icons fs-1" >live_help</i>   {{$msjconfirmation}}    </h2>  
             </div>
 
 
