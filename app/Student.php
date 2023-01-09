@@ -8,7 +8,7 @@ class Student extends Model
 {
     //aca se declaran todas las columnas del modelo
     protected $fillable = [
-        'name', 'email', 'birthday','phone','rut','height','weight','category_id'
+        'name', 'email', 'birthday','phone','rut','height','weight','category_id','month_ammount'
     ];
 
     //metodo para establecer la relacion con el modelo category
