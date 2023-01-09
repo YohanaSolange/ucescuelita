@@ -31,7 +31,7 @@
                         <th>Fecha Nacimiento</th>
                         <th>Editar</th>
                         <th>Detalle</th>
-                        <th>Eliminar</th>
+                        <th>Borrar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,8 +84,16 @@
                          var buttons = '<a class="btn btn-info" href="{{ url("student")}}/'+data+'/detail" title="Detail"><i class="material-icons">search</i></a>';
                         return buttons;
                     }},
-                    { "data": "birthday"}
-                  
+                    { data: "id", render : function ( data, type, row, meta ) {
+                    
+                        if (row.enabled==1){
+                        var buttons = '<a class="btn btn-Danger" href="{{ url("student")}}/'+data+'/delete" title="Desactivar"><i class="material-icons">delete</i>Borrar</a>';
+                    }else{
+                        var buttons = '<a class="btn btn-secondary" href="{{ url("student")}}/'+data+'/activate" title="Activar"><i class="material-icons">verified_user</i>Activar</a>';
+                        
+                    }
+                         return buttons;
+                    }}
                 ],
                 language: lenguaje_es,
                 "order": [[ 0, "desc" ]]

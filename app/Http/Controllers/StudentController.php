@@ -129,7 +129,7 @@ class StudentController extends Controller
         //TODO: Generar las membresias del estudiante recien creado
         $month = now()->month;
         $year = now()->year;
-
+        $name=$student->name;
         //crea la matricula
         Membership::create([
             "student_id" => $student->id,
@@ -165,7 +165,7 @@ class StudentController extends Controller
         }
 
 
-        $msj= 'Estudiante agregado Correctamente';
+        $msj= 'Estudiante '.$name.' agregado Correctamente';
         $redict='/student';
         return view ('templates.msj',compact('msj','redict'));
 
@@ -225,6 +225,69 @@ class StudentController extends Controller
        return view ('student.detail',compact('student'));
 
     }
+
+    public function delete($student_id){
+        //Si encuentra el ID edita
+       $membership = Membership::all();
+        $student = Student::findOrFail($student_id);
+
+        $redict='/student';
+        $activo=$student->enabled; 
+        //$membershipactivo= $membership->enabled;
+        if ($activo==1 ){
+           // $redictok='student/'.$student_id.'/delete/'.$activo.'/process/'.$membershipactivo;
+            $redictok='student/'.$student_id.'/delete/'.$activo.'/process';
+            $msjconfirmation = '¿Esta seguro de "BORRAR" al Estudiante '. $student->name.'?';
+       
+            return view('templates.msjconfirmation',compact('msjconfirmation','redict','redictok'));
+        } else {
+           // $redictok='student/'.$student_id.'/activate/'.$activo.'/process/'.$membershipactivo;
+            $redictok='student/'.$student_id.'/activate/'.$activo.'/process';
+            $msjconfirmation = '¿Esta seguro de "ACTIVAR" al Estudiante '. $student->name.'?';
+   
+        return view('templates.msjconfirmation',compact('msjconfirmation','redict','redictok'));
+        }
+        
+    }
+
+    public function deleteprocess($student_id, $activo){
+          //Si encuentra el ID edita
+        $student = Student::findOrFail($student_id);
+        //deshabilita estudiante
+
+        //me trae solo las membresias pendientes de pago (status=0)
+        $memberships = Membership::where('student_id','=',$student_id)
+                        ->where('status','=',0)
+                        ->get();
+        //deshabilitar membresias
+
+        foreach($memberships as $membership){
+            
+            $membership->enabled = 0;
+            $membership->save();
+        }
+        $activo=$student->enabled;
+       //dd($membership->enabled);
+       
+        if ($student->enabled==1 ){
+        $inactivo=0;
+        $student->enabled=  $inactivo;
+        $student->save();
+        
+        $msj = 'El estudiante '.$student->name.' a sido Desactivado del sistema';
+        $redict ='/student';
+        return view('templates.msj',compact('msj','redict')); 
+
+        }else {
+        $activo=1;
+        $student->enabled= $activo;
+        $student->save();
+        
+        $msj = 'El estudiante '.$student->name.' se Activa en el sistema';
+        $redict ='/student';
+        return view('templates.msj',compact('msj','redict')); 
+        }
+}
 
     public function pdf($student_id){
 
